@@ -26,6 +26,7 @@ function App() {
           ]
         }))
     }
+    setText("")
   }
 
   const changeCompleted = (id, completed) => {
@@ -46,11 +47,15 @@ function App() {
     .then(() => setTodos(todos.filter((todo) => todo.id !== id)))
   }
 
+  const clearAll = () => {
+    setTodos([])
+  }
+
   return (
     <section className='p-5 w-[450px] bg-dark-brown rounded-md shadow-2xl'>
       <Header text={text} setText={setText} handlePost={handlePost} />
       <List data={todos} changeCompleted={changeCompleted} remove={remove} />
-      <Footer />
+      <Footer data={todos} clearAll={clearAll} />
     </section>
   )
 }
