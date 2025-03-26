@@ -41,10 +41,15 @@ function App() {
       })))
   }
 
+  const remove = (id) => {
+    instance.delete(`/todos/${id}`)
+    .then(() => setTodos(todos.filter((todo) => todo.id !== id)))
+  }
+
   return (
     <section className='p-5 w-[450px] bg-dark-brown rounded-md shadow-2xl'>
       <Header text={text} setText={setText} handlePost={handlePost} />
-      <List data={todos} changeCompleted={changeCompleted} />
+      <List data={todos} changeCompleted={changeCompleted} remove={remove} />
       <Footer />
     </section>
   )

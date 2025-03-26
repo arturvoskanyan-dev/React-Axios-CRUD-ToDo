@@ -1,7 +1,7 @@
 import React from 'react'
 import { MdEdit, FaRegTrashCan } from "../../index"
 
-export default function ListItem({ id, title, completed, changeCompleted }) {
+export default function ListItem({ id, title, completed, changeCompleted, remove }) {
     return (
         <li className='flex justify-between items-center gap-4 p-2.5 mb-4 bg-light-brown rounded-sm'>
             <input
@@ -15,7 +15,7 @@ export default function ListItem({ id, title, completed, changeCompleted }) {
             </span>
             <div className='flex gap-2 text-xl text-white cursor-pointer'>
                 <MdEdit />
-                <FaRegTrashCan />
+                <FaRegTrashCan onClick={() => remove(id)} />
             </div>
         </li>
     )
