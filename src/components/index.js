@@ -8,5 +8,6 @@ export {Header, List, Footer}
 
 import { MdEdit } from "react-icons/md";
 import { FaRegTrashCan } from "react-icons/fa6";
+import { IoCheckbox } from "react-icons/io5";
 
-export {MdEdit, FaRegTrashCan}
+export {MdEdit, FaRegTrashCan, IoCheckbox}

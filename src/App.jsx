@@ -47,6 +47,19 @@ function App() {
     .then(() => setTodos(todos.filter((todo) => todo.id !== id)))
   }
 
+  const editList = (id, newTitle) => {
+    instance.patch(`/todos/${id}`, {title : newTitle})
+    .then((res) => setTodos(todos.map((todo) => {
+      if(todo.id === id) {
+        return {
+          ...todo,
+          title : res.data.title
+        }
+      }
+      return todo
+    })))
+  }
+
   const clearAll = () => {
     setTodos([])
   }
@@ -54,7 +67,7 @@ function App() {
   return (
     <section className='p-5 w-[450px] bg-dark-brown rounded-md shadow-2xl'>
       <Header text={text} setText={setText} handlePost={handlePost} />
-      <List data={todos} changeCompleted={changeCompleted} remove={remove} />
+      <List data={todos} changeCompleted={changeCompleted} remove={remove} editList={editList} />
       <Footer data={todos} clearAll={clearAll} />
     </section>
   )
