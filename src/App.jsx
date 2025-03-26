@@ -28,10 +28,23 @@ function App() {
     }
   }
 
+  const changeCompleted = (id, completed) => {
+    instance.patch(`/todos/${id}`, { completed: !completed })
+      .then((res) => setTodos(todos.map((todo) => {
+        if(todo.id === id) {
+          return {
+            ...todo,
+            completed : res.data.completed
+          }
+        }
+        return todo
+      })))
+  }
+
   return (
     <section className='p-5 w-[450px] bg-dark-brown rounded-md shadow-2xl'>
       <Header text={text} setText={setText} handlePost={handlePost} />
-      <List data={todos} />
+      <List data={todos} changeCompleted={changeCompleted} />
       <Footer />
     </section>
   )
