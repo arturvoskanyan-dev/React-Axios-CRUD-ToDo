@@ -2,9 +2,9 @@ import React from 'react'
 
 export default function Header() {
     return (
-        <header>
+        <header className='mb-4'>
             <article>
-                <h1 className='text-white text-3xl font-black'>ToDo List</h1>
+                <h1 className='p-2 text-white text-3xl font-black'>ToDo List</h1>
             </article>
             <section className='flex'>
                 <input
