@@ -1,7 +1,8 @@
 import Header from "./Header/Header"
 import List from "./List/List"
+import Footer from "./Footer/Footer";
 
-export {Header, List}
+export {Header, List, Footer}
 
 /* Icon */
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import AddClearBtn from '../AddClearBtn/AddClearBtn'
 
 export default function Header() {
     return (
@@ -11,9 +12,7 @@ export default function Header() {
                     type="text"
                     className='p-1.5 mr-4 w-full text-white border-2 border-pink rounded-sm'
                 />
-                <button
-                    className='p-2.5 w-20 bg-light-pink text-white rounded-md cursor-pointer transition-all hover:bg-hover-pink'
-                >Add</button>
+                <AddClearBtn>Add</AddClearBtn>
             </section>
         </header>
     )
