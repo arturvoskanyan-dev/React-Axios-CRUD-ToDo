@@ -1,7 +1,7 @@
 import React from 'react'
 import AddClearBtn from '../AddClearBtn/AddClearBtn'
 
-export default function Header() {
+export default function Header({text, setText, handlePost}) {
     return (
         <header className='mb-4'>
             <article>
@@ -10,9 +10,11 @@ export default function Header() {
             <section className='flex'>
                 <input
                     type="text"
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
                     className='p-1.5 mr-4 w-full text-white border-2 border-pink rounded-sm'
                 />
-                <AddClearBtn>Add</AddClearBtn>
+                <AddClearBtn btnClick={handlePost}>Add</AddClearBtn>
             </section>
         </header>
     )

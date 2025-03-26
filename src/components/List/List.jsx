@@ -11,6 +11,7 @@ export default function List({ data }) {
               <ListItem 
                 key={todo.id}
                 title={todo.title}
+                completed={todo.completed}
               />
             )
           })
