@@ -1,63 +1,52 @@
 import { Header, List, Footer } from "./components/index"
 import { useEffect, useState } from "react"
-import { instance } from "./api/axiosInstance";
+import useAxios from "./hooks/useAxios";
 import './App.css'
 
 function App() {
   const [todos, setTodos] = useState([]);
   const [text, setText] = useState("");
+  const [method, setMethod] = useState("get");
+  const [url, setUrl] = useState("/todos?_limit=15")
+  const [processData, setProcessData] = useState(null);
+  const [processId, setProcessId] = useState(null);
+
+  const data = useAxios({
+    method: method,
+    url: url,
+    body: processData,
+    id: processId,
+  })
 
   useEffect(() => {
-    instance.get("/todos?_limit=15")
-      .then((res) => setTodos(res.data))
-      .catch((err) => console.log(err))
-  }, [])
+    setTodos(data)
+  }, [data, method])
 
   const handlePost = () => {
     if (text.trim()) {
-      instance.post("/todos", { title: text, completed: false })
-        .then((res) => setTodos((prev) => {
-          return [
-            ...prev,
-            {
-              ...res.data,
-              id: Date.now()
-            }
-          ]
-        }))
+      setProcessData({ title: text, completed: false })
+      setUrl("/todos")
+      setMethod("post");
     }
     setText("")
   }
 
   const changeCompleted = (id, completed) => {
-    instance.patch(`/todos/${id}`, { completed: !completed })
-      .then((res) => setTodos(todos.map((todo) => {
-        if(todo.id === id) {
-          return {
-            ...todo,
-            completed : res.data.completed
-          }
-        }
-        return todo
-      })))
+    setUrl(`/todos/${id}`)
+    setMethod("patch")
+    setProcessData({id : id, completed : !completed})
   }
 
   const remove = (id) => {
-    instance.delete(`/todos/${id}`)
-    .then(() => setTodos(todos.filter((todo) => todo.id !== id)))
+    setUrl(`/todos/${id}`)
+    setMethod("delete")
+    setProcessId(id)
   }
 
   const editList = (id, newTitle) => {
-    instance.patch(`/todos/${id}`, {title : newTitle})
-    .then((res) => setTodos(todos.map((todo) => {
-      if(todo.id === id) {
-        return {
-          ...todo,
-          title : res.data.title
-        }
-      }
-      return todo
-    })))
+    setUrl(`/todos/${id}`)
+    setMethod("patch")
+    setProcessData({title : newTitle})
   }
 
   const clearAll = () => {
