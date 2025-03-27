@@ -49,6 +49,19 @@ function App() {
     setProcessData({title : newTitle})
   }
 
+  // const editList = (id, newTitle) => {
+  //   axios.patch(`https://jsonplaceholder.typicode.com/todos/${id}`, { title: newTitle })
+  //     .then((res) => setTodos(todos.map((todo) => {
+  //       if (todo.id === id) {
+  //         return {
+  //           ...todo,
+  //           title: res.data.title
+  //         }
+  //       }
+  //       return todo
+  //     })))
+  // }
+
   const clearAll = () => {
     setTodos([])
   }

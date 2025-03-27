@@ -19,8 +19,8 @@ export default function useAxios({ method = "get", url, body = null, id}) {
       } else if (method === "patch") {
         setData(data.map((d) => {
           if (d.id === res.data.id) {
-            return {...d, completed: res.data.completed} 
-          } 
+            return {...d, completed: res.data.completed, title: res.data.title} 
+          }
           return d
         }))
       } else if(method === "delete") {
