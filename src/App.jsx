@@ -46,7 +46,7 @@ function App() {
   const editList = (id, newTitle) => {
     setUrl(`/todos/${id}`)
     setMethod("patch")
-    setProcessData({title : newTitle})
+    setProcessData({title : newTitle, name : "edit"})
   }
 
   // const editList = (id, newTitle) => {

@@ -14,12 +14,17 @@ export default function useAxios({ method = "get", url, body = null, id}) {
     }).then((res) => {
       if (method === "post") {
         setData((prev) => {
-          return [...prev, { ...res.data, id: Date.now()}]
+          return [...prev, { ...res.data, id: Date.now(), title: res.data.title}]
         })
       } else if (method === "patch") {
+        setData((prev) => {
+          return [...prev, {...res.data, title: res.data.title}]
+        })
         setData(data.map((d) => {
-          if (d.id === res.data.id) {
-            return {...d, completed: res.data.completed, title: res.data.title} 
+          if (d.id === res.data.id && res.data.name === "edit") {
+            return {...d, title: res.data.title} 
+          } else if(d.id === res.data.id) {
+            return {...d, completed: res.data.completed}
           }
           return d
         }))
