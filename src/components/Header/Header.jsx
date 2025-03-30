@@ -7,7 +7,7 @@ export default function Header({text, setText, handlePost}) {
             <article>
                 <h1 className='p-2 text-white text-3xl font-black'>ToDo List</h1>
             </article>
-            <section className='flex'>
+            <form className='flex' onSubmit={(e) => e.preventDefault()}>
                 <input
                     type="text"
                     value={text}
@@ -15,7 +15,7 @@ export default function Header({text, setText, handlePost}) {
                     className='p-1.5 mr-4 w-full text-white border-2 border-pink rounded-sm'
                 />
                 <AddClearBtn btnClick={handlePost}>Add</AddClearBtn>
-            </section>
+            </form>
         </header>
     )
 }

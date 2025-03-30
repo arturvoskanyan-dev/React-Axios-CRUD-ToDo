@@ -15,7 +15,9 @@ export default function ListItem({ id, title, completed, changeCompleted, remove
             />
             {
                 !isEdit
-                    ? <span className={`flex-1 ${completed ? "text-gray-500 line-through" : "text-white"} font-bold truncate`}>
+                    ? <span
+                        onDoubleClick={() => setIsEdit(true)}
+                        className={`flex-1 ${completed ? "text-gray-500 line-through" : "text-white"} font-bold truncate`}>
                         {title}
                     </span>
                     : <input
